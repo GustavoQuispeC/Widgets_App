@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:widgets_app/config/router/app_router.dart';
 
 class ButtonsScreen extends StatelessWidget {
   static const String name = 'buttons_screen';
@@ -85,8 +84,36 @@ class _ButtonsView extends StatelessWidget {
               icon: const Icon(Icons.app_registration_rounded),
               style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(colors.primary)),
-            )
+            ),
+            
+            //Boton personalizado
+            const CustomButton()
           ],
+        ),
+      ),
+    );
+  }
+}
+
+//Boton personalizado
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: colors.primary,
+        child: InkWell(
+          onTap: () {},
+          splashColor: Colors.black,
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text('Custom Button', style: TextStyle(color: Colors.white)),
+          ),
         ),
       ),
     );
