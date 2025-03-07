@@ -7,6 +7,41 @@ class UiControlsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('UI Controls'),
+      ),
+      body: const _UiControlsView(),
+    );
+  }
+}
+
+class _UiControlsView extends StatefulWidget {
+  const _UiControlsView();
+
+  @override
+  State<_UiControlsView> createState() => _UiControlsViewState();
+}
+
+class _UiControlsViewState extends State<_UiControlsView> {
+  bool isDeveloper = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      physics: const ClampingScrollPhysics(),
+      children: [
+        SwitchListTile(
+          title: const Text('Developer mode'),
+          subtitle: const Text('Enable developer mode'),
+          value: isDeveloper,
+          onChanged: (bool value) {
+            setState(() {
+              isDeveloper = value;
+            });
+          },
+        ),
+      ],
+    );
   }
 }
