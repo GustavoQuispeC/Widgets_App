@@ -34,4 +34,9 @@ const appMenuItems = <MenuItem>[
       subtitle: 'Mensajes temporales',
       link: '/snackbars',
       icon: Icons.notifications_active),
+  MenuItem(
+      title: 'Animated ontainer',
+      subtitle: 'Stateful animation',
+      link: '/animated',
+      icon: Icons.check_box_outline_blank_rounded),
 ];
