@@ -23,8 +23,12 @@ class _UiControlsView extends StatefulWidget {
   State<_UiControlsView> createState() => _UiControlsViewState();
 }
 
+enum Transportation { car, bike, walk, plane }
+
 class _UiControlsViewState extends State<_UiControlsView> {
   bool isDeveloper = true;
+
+  Transportation selectedTransportation = Transportation.car;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,7 @@ class _UiControlsViewState extends State<_UiControlsView> {
             });
           },
         ),
+        RadioListTile()
       ],
     );
   }
