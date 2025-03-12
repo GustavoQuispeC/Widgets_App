@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:widgets_app/config/router/app_router.dart';
 
 class SlideInfo {
-  final String? title;
-  final String? caption;
-  final String? imageUrl;
+  final String title;
+  final String caption;
+  final String imageUrl;
 
-  SlideInfo({
-    this.title,
-    this.caption,
-    this.imageUrl,
-  });
+  SlideInfo(this.title, this.caption, this.imageUrl);
 }
 
 final slides = <SlideInfo>[
   SlideInfo(
-    title: 'Busca la comida',
-    caption: 'Busca la comida que deseas',
-    imageUrl: 'assets/images/tutorial/1.png',
-  ),
+      'Busca la comida',
+      'Exercitation voluptate cillum eu aute dolor irure aliquip.',
+      'assets/images/1.png'),
   SlideInfo(
-    title: 'Entrega rapida',
-    caption: 'Selecciona la comida que deseas',
-    imageUrl: 'assets/images/tutorial/2.png',
-  ),
+      'Entrega rápida',
+      'Ullamco ullamco duis labore quis occaecat culpa laborum id incididunt.',
+      'assets/images/2.png'),
   SlideInfo(
-    title: 'Disfruta la comida',
-    caption: 'Realiza tu pedido y espera la entrega',
-    imageUrl: 'assets/images/tutorial/3.png',
-  ),
+      'Disfruta la comida',
+      'Ea officia exercitation voluptate nostrud amet esse ut exercitation deserunt est enim est.',
+      'assets/images/3.png'),
 ];
 
 class AppTutorialScreen extends StatelessWidget {
@@ -38,29 +33,64 @@ class AppTutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const BouncingScrollPhysics(),
-        children: slides
-            .map((slideData) => _Slide(
-                  title: slideData.title,
-                  caption: slideData.caption,
-                  imageUrl: slideData.imageUrl,
-                ))
-            .toList(),
-      ),
+      backgroundColor: Colors.white,
+      body: Stack(children: [
+        PageView(
+          physics: const BouncingScrollPhysics(),
+          children: slides
+              .map((slideData) => _Slide(
+                    title: slideData.title,
+                    caption: slideData.caption,
+                    imageUrl: slideData.imageUrl,
+                  ))
+              .toList(),
+        ),
+        Positioned(
+            right: 20,
+            top: 50,
+            child: TextButton(
+              child: const Text('Salir'),
+              onPressed: () => context.pop(),
+            ))
+      ]),
     );
   }
 }
 
 class _Slide extends StatelessWidget {
-  final String? title;
-  final String? caption;
-  final String? imageUrl;
+  final String title;
+  final String caption;
+  final String imageUrl;
 
-  const _Slide({this.title, this.caption, this.imageUrl});
+  const _Slide(
+      {required this.title, required this.caption, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final captionStyle = Theme.of(context).textTheme.bodySmall;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image(image: AssetImage(imageUrl)),
+            const SizedBox(height: 20),
+            Text(
+              title,
+              style: titleStyle,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              caption,
+              style: captionStyle,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
