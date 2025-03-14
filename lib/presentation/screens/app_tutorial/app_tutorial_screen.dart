@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:widgets_app/config/router/app_router.dart';
 
 class SlideInfo {
   final String title;
@@ -21,7 +20,7 @@ final slides = <SlideInfo>[
       'assets/images/2.png'),
   SlideInfo(
       'Disfruta la comida',
-      'Ea officia exercitation voluptate nostrud amet esse ut exercitation deserunt est enim est.',
+      'los productos de la mejor calidad y al mejor precio',
       'assets/images/3.png'),
 ];
 
