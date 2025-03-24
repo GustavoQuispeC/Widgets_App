@@ -63,6 +63,24 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     setState(() {});
   }
 
+//Refresca la lista de imagenes
+  Future<void> onRefresh() async {
+    isLoading = true;
+    setState(() {});
+
+    await Future.delayed(const Duration(seconds: 3));
+    if (!isMounted) return;
+    isLoading = false;
+
+    final lastId = imagesIds.last;
+
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    addFiveImages();
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,20 +90,25 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         context: context,
         removeTop: true,
         removeBottom: true, //no funciona en algunos dispositivos moviles
-        child: ListView.builder(
-            physics: const BouncingScrollPhysics(), //efecto de rebote
-            controller: scrollController,
-            itemCount: imagesIds.length,
-            itemBuilder: (context, index) {
-              return FadeInImage(
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: 300,
-                  placeholder:
-                      const AssetImage('assets/images/jar-loading.gif'),
-                  image: NetworkImage(
-                      'https://picsum.photos/id/${imagesIds[index]}/500/300'));
-            }),
+        child: RefreshIndicator(
+          onRefresh: onRefresh,
+          edgeOffset: 10,
+          strokeWidth: 2,
+          child: ListView.builder(
+              physics: const BouncingScrollPhysics(), //efecto de rebote
+              controller: scrollController,
+              itemCount: imagesIds.length,
+              itemBuilder: (context, index) {
+                return FadeInImage(
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 300,
+                    placeholder:
+                        const AssetImage('assets/images/jar-loading.gif'),
+                    image: NetworkImage(
+                        'https://picsum.photos/id/${imagesIds[index]}/500/300'));
+              }),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pop(),
