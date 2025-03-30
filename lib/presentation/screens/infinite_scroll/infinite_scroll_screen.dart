@@ -54,6 +54,16 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     setState(() {});
 
     //todo: Mover scroll
+    moveScrollToBottom();
+  }
+
+  void moveScrollToBottom() {
+    if (scrollController.position.pixels + 100 <=
+        scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(scrollController.position.pixels + 120,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn);
   }
 
 //Agrega 5 imagenes a la lista
