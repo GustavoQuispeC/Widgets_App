@@ -23,6 +23,14 @@ class _SideMenuState extends State<SideMenu> {
         setState(() {
           navDrawerIndex = value;
         });
+
+        final menuItem = appMenuItems[value];
+        if (menuItem.link != null) {
+          //Navigator.pushNamed(context, menuItem.link!);
+          Navigator.pushNamed(context, menuItem.link!);
+        } else {
+          Navigator.pop(context);
+        }
       },
       children: [
         //! padding for the notch
