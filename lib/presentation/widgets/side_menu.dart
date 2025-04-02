@@ -1,17 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 
 class SideMenu extends StatefulWidget {
-  const SideMenu({super.key});
+  final GlobalKey<ScaffoldState>? scaffoldKey;
+
+  const SideMenu({super.key, this.scaffoldKey});
 
   @override
   State<SideMenu> createState() => _SideMenuState();
 }
 
 class _SideMenuState extends State<SideMenu> {
-  int navDrawerIndex = 1;
+  int navDrawerIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +26,8 @@ class _SideMenuState extends State<SideMenu> {
         });
 
         final menuItem = appMenuItems[value];
-        if (menuItem.link != null) {
-          //Navigator.pushNamed(context, menuItem.link!);
-          Navigator.pushNamed(context, menuItem.link!);
-        } else {
-          Navigator.pop(context);
-        }
+        context.push(menuItem.link);
+        widget.scaffoldKey?.currentState?.closeDrawer();
       },
       children: [
         //! padding for the notch

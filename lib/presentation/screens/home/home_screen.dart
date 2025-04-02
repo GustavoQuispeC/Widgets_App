@@ -10,12 +10,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+//! ScaffoldKey para el drawer: permite abrir el drawer desde el body
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+        //llamamos al scaffoldKey
+        key: scaffoldKey,
         appBar: AppBar(
           title: const Text('Flutter + Material 3'),
         ),
         body: const _HomeView(),
-        drawer: const SideMenu());
+        drawer: SideMenu(scaffoldKey: scaffoldKey));
   }
 }
 
