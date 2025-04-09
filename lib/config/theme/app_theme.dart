@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class AppTheme {
-  final colorList = <Color>[
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
-    Colors.pink,
-    Colors.teal,
-    Colors.cyan,
-    Colors.indigo,
-    Colors.amber,
-    Colors.lime,
-    Colors.brown,
-    Colors.grey,
-    Colors.blueGrey,
-  ];
+final colorList = <Color>[
+  Colors.red,
+  Colors.green,
+  Colors.blue,
+  Colors.yellow,
+  Colors.purple,
+  Colors.orange,
+  Colors.pink,
+  Colors.teal,
+  Colors.cyan,
+  Colors.indigo,
+  Colors.amber,
+  Colors.lime,
+  Colors.brown,
+  Colors.grey,
+  Colors.blueGrey,
+];
 
+class AppTheme {
   final int selectedColor;
 
   AppTheme({this.selectedColor = 0})
