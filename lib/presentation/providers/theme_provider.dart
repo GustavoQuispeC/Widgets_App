@@ -15,7 +15,7 @@ final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
   (ref) => ThemeNotifier(),
 );
 
-// Controller o Notifier
+// Controller o Notifier que extiende de StateNotifier
 class ThemeNotifier extends StateNotifier<AppTheme> {
   // STATE = Estado = new AppTheme();
   ThemeNotifier() : super(AppTheme());
