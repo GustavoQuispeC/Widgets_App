@@ -30,7 +30,7 @@ class ThemeChangerScreen extends ConsumerWidget {
     );
   }
 }
-
+// This widget is a StatelessWidget that uses Riverpod to manage the state of the theme changer screen. It displays a list of colors and allows the user to select one of them. The selected color is used to update the theme of the app.
 class _ThemeChangerView extends ConsumerWidget {
   const _ThemeChangerView();
 
@@ -44,6 +44,7 @@ class _ThemeChangerView extends ConsumerWidget {
       itemCount: colors.length,
       itemBuilder: (context, index) {
         final Color color = colors[index];
+
 
         return RadioListTile(
           title: Text('Este color', style: TextStyle(color: color)),
